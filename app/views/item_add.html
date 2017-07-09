@@ -1,0 +1,59 @@
+<div class="generic">
+	<div class='row'>
+		<div ng-if='editar==0'>
+			<h2>
+				Registro de articulo <img class='img_button' src="images/back.png" ng-click='back()'>
+			</h2>
+		</div>
+		<div ng-if='editar==1'>
+			<h2>
+				Edición articulo <img class='img_button' src="images/back.png" ng-click='back()'>
+			</h2>
+		</div>
+	</div>
+	<form name='item_form'>
+		<div class='form_container'>
+			<label for="itemid">Clave:</label>
+		  	<div class="form-group">			   
+			    <input type='text' ng-disabled = 'true'  ng-model='item.id'/>			    
+		  	</div>
+
+		  	 <label for="descripcion">Descripción:</label>
+		  	<div class="form-group">			   
+			    <input type='text' name='descripcion' ng-disabled = 'saving' required  ng-model='item.descripcion'/>
+			    <span style="color:red" ng-show="item_form.descripcion.$dirty && item_form.descripcion.$invalid">
+			  		<span ng-show="item_form.descripcion.$error.required">La descripcion es requerida</span>
+			  	</span>
+		  	</div>
+
+		  	<label for="modelo">Modelo:</label>
+			<div class="form-group">			    
+			    <input type='text' name='modelo' ng-disabled = 'saving' required  ng-model='item.modelo'/>
+			    <span style="color:red" ng-show="item_form.modelo.$dirty && item_form.modelo.$invalid">
+			  		<span ng-show="item_form.modelo.$error.required">El modelo es requerido</span>
+			  	</span>
+		  	</div>
+		  	<label for="precio">Precio:</label>
+		  	<div class="form-group">			    
+			    <input type='number' name='precio' ng-disabled = 'saving' required  ng-model='item.precio'/>
+			    <span style="color:red" ng-show="item_form.precio.$dirty && item_form.precio.$invalid">
+			  		<span ng-show="item_form.precio.$error.required">El precio es requerido</span>
+			  	</span>
+		  	</div>
+		  	
+		  
+			 <label for="existencia">Existencia:</label>
+		  	<div class="form-group">			
+			    <input type='number' mask='AAAA999999w?w?w?' name='existencia' ng-disabled ='saving' required  ng-model='item.existencia'/>
+			    <span style="color:red" ng-show="item_form.existencia.$dirty && item_form.existencia.$invalid">
+			  		<span ng-show="item_form.existencia.$error.required">La existencia es requerida</span>
+			  	</span>
+		  	</div>
+		  	<div class='large-4 columns' >
+			<button class='btn btn-primary' ng-click='Cancelar()'>Cancelar</button>
+			</div>
+		  	<div>
+				<button ng-disabled='item_form.$invalid' class='btn btn-primary' ng-click='SaveItem()'>Guardar</button>
+		    </div>
+		</div>
+</div>

@@ -1,0 +1,18 @@
+<div class='row'>
+	<h3>Registrar Articulo <img class='img_button' src="images/add_menu.png" ng-click='goToAdd()'></h3>
+</div>
+
+<table class="table">
+	<tr>
+		<th>Clave</th>
+		<th>Descripción</th>		
+		<th></th>
+		
+	</tr>
+	<tr ng-repeat='i in items'>
+		<td>{{i.id}}</td>
+		<td>{{i.descripcion}} {{i.existencia}} {{i.modelo}}</td>		
+		<td><img class='img_button' src="images/edit.png" ng-click='editItem(i.id)'></td>
+		
+	</tr>
+</table>

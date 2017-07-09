@@ -1,0 +1,59 @@
+<div class="generic">
+	<div class='row'>
+		<div ng-if='editar==0'>
+			<h2>
+				Registro de clientes <img class='img_button' src="images/back.png" ng-click='back()'>
+			</h2>
+		</div>
+		<div ng-if='editar==1'>
+			<h2>
+				Edición cliente <img class='img_button' src="images/back.png" ng-click='back()'>
+			</h2>
+		</div>
+	</div>
+	<form name='client_form'>
+		<div class='form_container'>
+			<label for="id">Clave:</label>
+		  	<div class="form-group">			   
+			    <input type='text' ng-disabled = 'true'  ng-model='client.id'/>			    
+		  	</div>
+
+		  	 <label for="nombre">Nombre:</label>
+		  	<div class="form-group">			   
+			    <input type='text' name='nombre' ng-disabled = 'saving' required  ng-model='client.nombre'/>
+			    <span style="color:red" ng-show="client_form.nombre.$dirty && client_form.nombre.$invalid">
+			  		<span ng-show="client_form.nombre.$error.required">El nombre es requerido</span>
+			  	</span>
+		  	</div>
+
+		  	<label for="apellido_p">Apellido Paterno:</label>
+			<div class="form-group">			    
+			    <input type='text' name='apellido_p' ng-disabled = 'saving' required ng-model='client.apellido_p'/>
+			    <span style="color:red" ng-show="client_form.apellido_p.$dirty && client_form.apellido_p.$invalid">
+			  		<span ng-show="client_form.apellido_p.$error.required">El apellido paterno es requerido</span>
+			  	</span>
+		  	</div>
+		  	<label for="apellido_m">Apellido Materno:</label>
+		  	<div class="form-group">			    
+			    <input type='text' name='apellido_m' ng-disabled = 'saving' required  ng-model='client.apellido_m'/>
+			    <span style="color:red" ng-show="client_form.apellido_m.$dirty && client_form.apellido_m.$invalid">
+			  		<span ng-show="client_form.apellido_m.$error.required">El apellido materno es requerido</span>
+			  	</span>
+		  	</div>
+		  	
+		  
+			 <label for="RFC">RFC:</label>
+		  	<div class="form-group">			
+			    <input type='text' mask='AAAA999999w?w?w?' name='RFC' ng-disabled ='saving' required  ng-model='client.RFC'/>
+			    <span style="color:red" ng-show="client_form.RFC.$dirty && client_form.RFC.$invalid">
+			  		<span ng-show="client_form.RFC.$error.required">El RFC es requerida</span>
+			  	</span>
+		  	</div>
+		  	<div class='large-4 columns' >
+			<button class='btn btn-primary' ng-click='Cancelar()'>Cancelar</button>
+			</div>
+		  	<div>
+				<button ng-disabled='client_form.$invalid' class='btn btn-primary' ng-click='SaveClient()'>Guardar</button>
+		    </div>
+		</div> 
+</div>

@@ -1,0 +1,26 @@
+<div class='row'>
+	<h3>Registrar Venta <img class='img_button' src="images/add_menu.png" ng-click='goToAdd()'></h3>
+</div>
+
+<table class="table">
+	<tr>
+		<th>Folio Venta</th>
+		<th>Clave Cliente</th>
+		<th>Nombre</th>	
+		<th>Total</th>		
+		<th>Fecha</th>
+		<th>Estatus</th>
+		
+		
+	</tr>
+	<tr ng-repeat='v in sales'>
+		<td>{{v.folio_venta}}</td>
+		<td>{{v.clave_cliente}}</td>
+		<td>{{v.nombre_completo}}</td>		
+		<td>{{v.total| currency}}</td>
+		<td>{{v.fecha_venta| date:'dd/MM/yyyy'}}</td>
+		<td>{{v.estatus}}</td>
+		
+	</tr>
+</table>
+ 

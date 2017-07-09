@@ -1,0 +1,18 @@
+<div class='row'>
+	<h3>Registrar Cliente <img class='img_button' src="images/add_menu.png" ng-click='goToAdd()'></h3>
+</div>
+
+<table class="table">
+	<tr>
+		<th>Clave</th>
+		<th>Nombre</th>		
+		<th></th>
+		
+	</tr>
+	<tr ng-repeat='c in clientes'>
+		<td>{{c.id}}</td>
+		<td>{{c.nombre}} {{c.apellido_p}} {{c.apellido_m}}</td>		
+		<td><img class='img_button' src="images/edit.png" ng-click='editClient(c.id)'></td>
+		
+	</tr>
+</table>

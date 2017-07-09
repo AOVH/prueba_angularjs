@@ -1,0 +1,119 @@
+		<h3>	
+		Registro de Venta <img class='img_button' src="images/back.png" ng-click='back()'>
+		</h3>
+		<div class="row">
+		<span class="pull-right">Folio Venta {{sale.id}}</span>
+		</div>
+
+		<div class='large-1 columns ' style="" > 
+			<span class="large-1 titulo_campo">Cliente:</span>
+		</div>
+		<div class='large-4 columns' >
+		
+			
+			<div angucomplete-alt id="client"
+			placeholder="Buscar Cliente"
+			pause="200"
+			selected-object="onClientSelected"			
+			remote-url="{{url_client}}"			
+			title-field="nombre,apellido_p,apellido_m"						
+			/>
+			
+
+		</div>
+		<div class='large-6 columns' ng-show="showrfc">
+		<span>RFC:{{ClientSelect.RFC}}</span>
+		</div>
+		<br>
+		<hr>
+		<div class='large-1 columns ' > 
+			<span class="large-2 titulo_campo">Articulo:</span>
+		</div>
+		<div class='large-4 columns'>
+			<div angucomplete-alt id="item"
+			placeholder="Buscar Articulo" 
+			pause="200"
+			selected-object="onItemSelected"
+			remote-url="{{url_item}}"
+			title-field="descripcion,existencia,modelo"			 
+						
+			/>
+			
+			
+		</div>
+
+		<div class='large-2 columns'  >
+		 <img class='img_button' src="images/add.png" ng-click='AddItem()'>
+		 </div>
+		<br><br>
+
+<div class="row">
+    <table class="table"> 
+        <tr>
+            <th>Descripción del articulo </th>           
+             <th>Modelo</th>
+            <th>Cantidad</th>           
+            <th>Precio</th>
+            <th>Importe</th>
+            <th></th>
+            
+        </tr>
+        <tr ng-repeat="art in articulos" >
+            <td>{{art.item_descripcion}}</td>
+         	<td>{{art.item_modelo}}</td>
+            <td class='large-1'><input  type='number' name='item_cantidad' ng-model='art.item_cantidad' ng-change="getTotal($index)"/></td>  
+            <td>{{art.item_precio  | currency}}</td>  
+            <td>{{art.item_precio * art.item_cantidad  | currency}}</td>          
+            
+             <td> <button class="btn btn-default"  ng-click="deleteItem($index)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<div class=" large-8 pull-right">
+ <div><label class="large-6 columns titulo_campo">Enganche:</label> <span class="large-4 columns">{{enganche | currency}}</span></div>
+  <div><label class="large-6 columns titulo_campo">Bonificacion Enganche:</label> <span class="large-4 columns">{{bonificacion_enganche  | currency}}</span></div>
+  <div><label class="large-6 columns titulo_campo">Total:</label> <span class="large-4 columns">{{total_importe  | currency}}</span></div>
+
+
+
+</div>
+<br>
+<br>
+<div class="large-10 columns pull-centers" ng-show="guardar">
+<h5 style="margin-left:210px;">
+abonos mensuales
+</h5>
+</div>
+<div class="row" ng-show="guardar">
+    <table class="table">  
+      
+        <tr ng-repeat="np in numero_pagos" >
+            <td>{{np.nombre}} DE</td>
+         	<td>{{np.abono | currency}}</td>            
+            <td>TOTAL A PAGAR {{np.total | currency }}</td>  
+            <td>SE AHORRA {{np.ahorro | currency }}</td> 
+            <td><input type="radio" ng-model="sale.cantidad_pagos" name="select" value="" ng-click="index_radio($index)" ></td>          
+            
+            
+        </tr> 
+    </table>
+</div>
+
+<hr class="blody"> 
+<div class="large-8 columns pull-right" >
+
+			<div class='large-4 columns' >
+			<button class='btn btn-primary' ng-click='Cancelar()'>Cancelar</button>
+			</div>
+			<div class='large-4 columns' >
+			<button class='btn btn-primary' ng-click='SeccionAbonos()' ng-show="afterclick">Siguiente</button>
+			<button class='btn btn-primary' ng-click='SaveSale()'  ng-show="guardar">Guardar</button>
+			</div>
+			
+</div>
