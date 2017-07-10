@@ -32,6 +32,7 @@ module.exports = function(config) {
       'bower_components/datatables/media/js/jquery.dataTables.js',
       'bower_components/angucomplete-alt/angucomplete-alt.js',
       'bower_components/sweetalert2/dist/sweetalert2.js',
+      'bower_components/ngMask/dist/ngMask.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

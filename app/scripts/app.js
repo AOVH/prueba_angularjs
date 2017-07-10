@@ -14,6 +14,7 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'ngMask',
     'angucomplete-alt',
     'ngSanitize',
     'ngTouch'

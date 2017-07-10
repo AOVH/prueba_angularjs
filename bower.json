@@ -12,7 +12,8 @@
     "angular-touch": "1.2.16",
     "datatables": "~1.10.7",
     "angucomplete-alt": "~0.0.43",
-    "sweetalert2": "^6.6.5"
+    "sweetalert2": "^6.6.5",
+    "ngMask": "angular-mask#^3.1.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16"
