@@ -146,7 +146,7 @@ angular.module('webApp')
                 if (index!=undefined){CantidadItemsChange($scope.articulos[index].id_item);
                    if ($scope.sum_cant2 > $scope.articulos[index].item_existencia){
                    swal("Error", "“El artículo seleccionado no cuenta con la existencia suficiente, favor de verifica.", "warning");
-                   $scope.articulos[index].item_cantidad=1 ;
+                   $scope.articulos[index].item_cantidad=1  ;
 
                 }                   
 
