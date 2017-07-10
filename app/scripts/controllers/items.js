@@ -31,7 +31,7 @@ angular.module('webApp')
     	$scope.items = data;
     	
     };
-
+     
 
     itemsservice.getItems(onItemsLoaded, onError);
   });

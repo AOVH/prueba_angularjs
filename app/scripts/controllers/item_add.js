@@ -94,4 +94,18 @@ angular.module('webApp')
       })
               
      }
+      $scope.mayorCero =function(){
+      if($scope.item.existencia <1)
+      {
+        $scope.item.existencia=1;
+      }
+    };
+    $scope.mayorCeroPrecio =function(){
+      if($scope.item.precio <1)
+      {
+        $scope.item.precio=1;
+      }
+    };
+   
+
   });

@@ -24,7 +24,7 @@ angular.module('webApp')
     $scope.afterclick=true;
     $scope.guardar=false;
     
- 
+
 
    
     
@@ -112,10 +112,19 @@ angular.module('webApp')
 	 	
 	 };
     var onLoadSettings= function(data){
-    $scope.settings=data 
+      if(data=="null"){
+         $scope.settings.tasa_financiamiento=0
+          $scope.settings.plazo_maximo=0
+           $scope.settings.porcentaje_enganche=0
+
+      }else{
+         $scope.settings=data 
+      }
+   
     
    };
-
+ salesservice.getLastSale(onLoadLastSale,onError)
+        settingsservice.getSettings(onLoadSettings,onErrorSettings) 
     $scope.onClientSelected= function(data){
         if(data){
             $scope.ClientSelect = data.originalObject;
@@ -130,20 +139,21 @@ angular.module('webApp')
     }; 
     $scope.getTotal = function(index) { 
      
-             $scope.sum_cant2=0
-            $scope.total=0
-            var last=0
-            for (var i = 0; i <   $scope.articulos.length; i++) {
-                if ($scope.articulos[i].item_cantidad ==0 ||$scope.articulos[i].item_cantidad==null){$scope.articulos[i].item_cantidad=1}
-                itemsservice.getItem($scope.articulos[i].id_item, onLoadItem, onError);
-
-                if (($scope.articulos[i].item_cantidad + $scope.sum_cant2) > $scope.item.existencia){
+            $scope.sum_cant2=0 
+            $scope.total=0             
+            for (var i = 0; i <   $scope.articulos.length; i++) {              
+                if ($scope.articulos[i].item_cantidad <1 ){$scope.articulos[i].item_cantidad=1}  
+                if (index!=undefined){CantidadItemsChange($scope.articulos[index].id_item);
+                   if ($scope.sum_cant2 > $scope.articulos[index].item_existencia){
                    swal("Error", "“El artículo seleccionado no cuenta con la existencia suficiente, favor de verifica.", "warning");
                    $scope.articulos[index].item_cantidad=1 ;
-                }             
-                if($scope.ItemSelect.id==$scope.articulos[i].id_item){
-                $scope.sum_cant2= $scope.sum_cant2 + $scope.articulos[i].item_cantidad
-                }      
+
+                }                   
+
+                }           
+              
+               
+                  
                 $scope.total = $scope.total + ( parseFloat( $scope.articulos[i].item_cantidad) * parseFloat(  $scope.articulos[i].item_precio));                
             }
             $scope.enganche=($scope.total / 100) * $scope.settings.porcentaje_enganche;
@@ -181,8 +191,9 @@ angular.module('webApp')
                     id_item: $scope.ItemSelect.id,
                     item_descripcion: $scope.ItemSelect.descripcion+" "+$scope.ItemSelect.existencia+" "+$scope.ItemSelect.modelo,
                     item_modelo: $scope.ItemSelect.modelo,
-                    item_precio: ($scope.ItemSelect.precio * (1 + ($scope.settings.tasa_financiamiento * $scope.settings.plazo_maximo ) / 100)),
+                    item_precio: (parseFloat($scope.ItemSelect.precio) * (1 + ($scope.settings.tasa_financiamiento * $scope.settings.plazo_maximo ) / 100)),
                     item_cantidad:1,
+                    item_existencia:$scope.ItemSelect.existencia,
                     id_financing_models: 0,
                     id_financing_types: 0,
                     id_paid_systems: 0,
@@ -203,8 +214,7 @@ angular.module('webApp')
 
     };
    
-    		salesservice.getLastSale(onLoadLastSale,onError)
-        settingsservice.getSettings(onLoadSettings,onErrorSettings) 
+    		
         $scope.CalcularPorMes= function(text,meses){
 
           var resultado;
@@ -255,6 +265,19 @@ angular.module('webApp')
                 $scope.sum_cant= $scope.sum_cant + $scope.articulos[i].item_cantidad
                 }              
             }
+           
+    
+   };
+    var CantidadItemsChange= function(index){
+        $scope.sum_cant2=0
+        for (var i = 0; i <   $scope.articulos.length; i++) {               
+                
+                if(index==$scope.articulos[i].id_item){
+                $scope.sum_cant2= $scope.sum_cant2 + $scope.articulos[i].item_cantidad
+                }              
+            }
+
+
            
     
    };
