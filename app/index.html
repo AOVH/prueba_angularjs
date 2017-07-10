@@ -11,7 +11,7 @@
     
 
 <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+ 
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
@@ -44,7 +44,7 @@
 
             <li ng-repeat='m in modulos' >
               <a href="#"> <i class="ti-layout-grid3-alt"></i> <span>{{m.nombre}}</span> <i class="pull-right has-submenu ti-angle-right"></i></a>
-              <ul class="nav nav-submenu"> 
+              <ul class="nav nav-submenu "> 
                 <li ng-repeat='p in m.screens'>
                   <a href="/#/{{p.link}}" >{{p.nombre}}</a>
                 </li>
@@ -56,7 +56,10 @@
       </div>
 
       <main id="playground">
-        <nav class="navbar navbar-top navbar-static-top">
+        <nav class="navbar navbar-top navbar-static-top" >
+         <div class="row" style="margin-top:13px;" ng-controller = 'ModulosCtrl'>
+              <span class="pull-right">Fecha:{{time|date:'dd/MM/yyyy'}}</span>
+           </div>
           <div class="container-fluid">
 
             <!-- sidebar collapse and toggle buttons get grouped for better mobile display -->
@@ -66,14 +69,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-              </button>
-             
-            </div>
+              </button> 
 
-           
 
+                  
+
+            </div>        
           </div>
         </nav>
+
          <div class="container">
           <div class="row">    
               

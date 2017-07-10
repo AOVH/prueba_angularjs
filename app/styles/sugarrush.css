@@ -5549,7 +5549,7 @@ input.labelauty.tiny + label > span.labelauty-checked-image {
   display: inline-block;
 }
 #logo-container {
-  background: #131e30;
+  background: black;
   height: 50px;
   top: 0px;
   left: 0px;
@@ -6405,7 +6405,7 @@ input.labelauty.tiny + label > span.labelauty-checked-image {
     located in the #main block
   ---------------------------------------------------*/
 .navbar-top {
-  background-color: #ffffff;
+  background-color: black;
   color: #8a8a8a;
   border-width: 0;
   top: 0;

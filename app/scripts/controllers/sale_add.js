@@ -140,30 +140,27 @@ angular.module('webApp')
     $scope.getTotal = function(index) { 
      
             $scope.sum_cant2=0 
-            $scope.total=0             
+            $scope.total=0  
+            $scope.cantidad_vacia=false;           
             for (var i = 0; i <   $scope.articulos.length; i++) {              
-                if ($scope.articulos[i].item_cantidad <1 ){$scope.articulos[i].item_cantidad=1}  
+                if ($scope.articulos[i].item_cantidad <1 ){$scope.articulos[i].item_cantidad=""}  
                 if (index!=undefined){CantidadItemsChange($scope.articulos[index].id_item);
                    if ($scope.sum_cant2 > $scope.articulos[index].item_existencia){
                    swal("Error", "“El artículo seleccionado no cuenta con la existencia suficiente, favor de verifica.", "warning");
                    $scope.articulos[index].item_cantidad=1  ;
-
                 }                   
 
-                }           
-              
+                }        
                
-                  
-                $scope.total = $scope.total + ( parseFloat( $scope.articulos[i].item_cantidad) * parseFloat(  $scope.articulos[i].item_precio));                
+                if($scope.articulos[i].item_cantidad==""){ $scope.total=0
+                  $scope.cantidad_vacia=true;
+                }else{$scope.total = $scope.total + ( parseFloat( $scope.articulos[i].item_cantidad) * parseFloat(  $scope.articulos[i].item_precio));}                
             }
             $scope.enganche=($scope.total / 100) * $scope.settings.porcentaje_enganche;
             $scope.bonificacion_enganche= $scope.enganche * (( $scope.settings.tasa_financiamiento * $scope.settings.plazo_maximo) / 100)
-            $scope.total_importe= ($scope.total -  $scope.enganche -  $scope.bonificacion_enganche)
+            $scope.total_importe= ($scope.total -  $scope.enganche -  $scope.bonificacion_enganche)         
             $scope.precio_contado= $scope.total_importe / (1 + (($scope.settings.tasa_financiamiento *$scope.settings.plazo_maximo) / 100))
-        
-         
-              
-         
+            
         }  
          
     $scope.updateItems = function() {
@@ -245,7 +242,7 @@ angular.module('webApp')
       }
 
     $scope.SeccionAbonos=function(){
-    if($scope.ClientSelect!=null || $scope.ItemSelect!=null && $scope.total>0 ){
+    if($scope.ClientSelect!=null && $scope.ItemSelect!=null &&  $scope.cantidad_vacia!=true && $scope.total>0  ){
       $scope.afterclick=false;
       $scope.guardar=true;
       $scope.getTotal();
