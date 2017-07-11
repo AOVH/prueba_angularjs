@@ -35,7 +35,7 @@
 		  	</div>
 		  	<label for="precio">Precio:</label>
 		  	<div class="form-group">			    
-			    <input type='number'   ng-change="mayorCeroPrecio()" name='precio' ng-disabled = 'saving' required  ng-model='item.precio'/>
+			    <input type='number'  ng-change="mayorCeroPrecio()" name='precio' ng-disabled = 'saving' required  ng-model='item.precio' max="9999999999"/>
 			    <span style="color:red" ng-show="item_form.precio.$dirty && item_form.precio.$invalid">
 			  		<span ng-show="item_form.precio.$error.required">El precio es requerido</span>
 			  	</span>
@@ -44,7 +44,7 @@
 		  
 			 <label for="existencia">Existencia:</label>
 		  	<div class="form-group">			
-			    <input type='number'  name='existencia' ng-change="mayorCero()" ng-disabled ='saving' required  ng-model='item.existencia'/>
+			    <input type='number'  name='existencia' ng-change="mayorCero()" ng-disabled ='saving' required  ng-model='item.existencia' max="9999999999"/>
 			    <span style="color:red" ng-show="item_form.existencia.$dirty && item_form.existencia.$invalid">
 			  		<span ng-show="item_form.existencia.$error.required">La existencia es requerida</span>
 			  	</span>

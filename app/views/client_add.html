@@ -20,7 +20,7 @@
 
 		  	 <label for="nombre">Nombre:</label>
 		  	<div class="form-group">			   
-			    <input type='text' name='nombre' ng-disabled = 'saving' required  ng-model='client.nombre'/>
+			    <input type='text' name='nombre' ng-disabled = 'saving' required  ng-model='client.nombre' />
 			    <span style="color:red" ng-show="client_form.nombre.$dirty && client_form.nombre.$invalid">
 			  		<span ng-show="client_form.nombre.$error.required">El nombre es requerido</span>
 			  	</span>
