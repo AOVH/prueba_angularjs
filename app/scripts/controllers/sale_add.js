@@ -73,7 +73,7 @@ angular.module('webApp')
       $scope.sale.id_financing_types=1
       $scope.sale.id_financing_models=2
       $scope.sale.cantidad_pagos=$scope.numero_pagos[$scope.index_r].cantidad 
-      $scope.sale.total_venta=$scope.numero_pagos[$scope.index_r].total 
+      $scope.sale.total_venta=$scope.total_importe 
       $scope.sale.pago_diferido=$scope.numero_pagos[$scope.index_r].abono 
       $scope.sale.articulos_vendidos=$scope.articulos;
       $scope.sale.active = 1;  
@@ -217,7 +217,8 @@ angular.module('webApp')
           var resultado;
           switch(text) {
                 case "abono":
-                     resultado= $scope.precio_contado / meses
+                var total_pagar=($scope.precio_contado *  (1 + ( $scope.settings.tasa_financiamiento * meses) / 100))
+                     resultado= total_pagar / meses
                     break;
                 case "total":
                     resultado= $scope.precio_contado * ( 1 + ( $scope.settings.tasa_financiamiento * meses ) / 100)
